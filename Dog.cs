@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestApp
+namespace PetManager
 {
     internal class Dog : Pet
     {
@@ -83,7 +83,12 @@ namespace TestApp
             //Console.WriteLine("Dog is doing a trick.");
         }
 
-        public override void LearnTrick(string trick)
+        public void LearnTrick(string trick)
+        {
+            LearnTrick(trick, true);
+        }
+
+        public override void LearnTrick(string trick, bool wait)
         {
             if (isSleeping)
             {
@@ -93,17 +98,21 @@ namespace TestApp
 
             trick = trick.ToLower();
 
-            if (tricksLearnt.Contains(trick))
+            if (wait)
             {
-                Console.WriteLine("Dog already knows this trick: " + trick);
-                return;
+                if (tricksLearnt.Contains(trick))
+                {
+                    Console.WriteLine("Dog already knows this trick: " + trick);
+                    return;
+                }
+
+                Console.WriteLine("Dog is learning trick: " + trick);
+                Console.WriteLine("Please wait!");
+
+                Thread.Sleep(5000);
+                Console.WriteLine("Dog has learned the trick: " + trick);
             }
 
-            Console.WriteLine("Dog is learning trick: "+trick);
-            Console.WriteLine("Please wait!");
-
-            Thread.Sleep(5000);
-            Console.WriteLine("Dog has learned the trick: " + trick);
             tricksLearnt.Add(trick);
         }
 

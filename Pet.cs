@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestApp
+namespace PetManager
 {
     internal abstract class Pet
     {
@@ -18,7 +18,7 @@ namespace TestApp
 
         public abstract void Speak();
         public abstract void Trick(string trick);
-        public abstract void LearnTrick(string trick);
+        public abstract void LearnTrick(string trick, bool wait);
         public abstract void Sleep();
         public abstract void Wake();
 
