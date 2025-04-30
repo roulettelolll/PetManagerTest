@@ -23,10 +23,10 @@ namespace PetManager
             return petInfo;
         }
 
-        public static List<string> GetTricksLearnt(Pet pet)
-        {
-            return pet.tricksLearnt;
-        }
+        //public static List<string> GetTricksLearnt(Pet pet)
+        //{
+        //    return pet.tricksLearnt;
+        //}
 
         public static string createSaveFileContent(Dictionary<string, string> saveInfo, List<string> tricksLearnt)
         {
@@ -58,7 +58,7 @@ namespace PetManager
             int i = 0;
             foreach (Pet pet in pets)
             {
-                string content = createSaveFileContent(GetSaveInfo(pet), GetTricksLearnt(pet));
+                string content = createSaveFileContent(GetSaveInfo(pet), pet.tricksLearnt);
                 i++;
                 string fileName = $"pet_{i}";
                 string filePath = Path.Combine(saveFolderPath, fileName);
@@ -166,7 +166,7 @@ namespace PetManager
         public static string InitSaveFolder()
         {
             string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string l_saveFolderPath = Path.Combine(appDataPath, "PetManager");
+            string l_saveFolderPath = Path.Combine(appDataPath, "tnydevv", "PetManager");
 
             saveFolderPath = l_saveFolderPath;
             Directory.CreateDirectory(l_saveFolderPath);
